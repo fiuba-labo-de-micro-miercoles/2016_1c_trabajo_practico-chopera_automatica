@@ -1,0 +1,57 @@
+Todo proyecto  debe estar acompañado por un informe que será el resultado  de la planificación y ejecución de la tarea desarrollada. Los puntos principales de este informe son :
+
+• Carátula
+
+Se presentara debidamente confeccionada en base al modelo  presentado en esta guía. Debe incluir  el titulo del proyecto, turno elegido, fecha de    Presentación  y nombre de los integrantes con su número de padrón  correspondiente .y de los docentes a cargo del turno.
+
+• Indice
+
+Se deberá numerar cada pagina del proyecto e indicar en cual folio se encuentra cada item  tratado. Tambien se detallaran los apéndices agregados.
+
+• Objetivo del proyecto
+
+Tendrá que  definir los objetivos y funciones  del proyecto
+Deberán figurar las prestaciones técnicas del mismo. 
+
+
+• Descripción del proyecto
+
+En este punto se desarrollara una explicación de los objetivos y funcionamiento  del  trabajo. Tambien se adjuntaran las especificaciones técnicas. En el caso de reemplazar un periférico por su correspondiente simulación, esta será debidamente justificada y deberá responder tal cual  el comportamiento del  periférico. Dicha demostración figurara en el apéndice
+
+
+• Diagrama  de conexiones en bloques
+
+Se implementara un diagrama en bloques  del prototipo  rescatando en cada bloque etapas principales del diseño (amplificación , alimentación, microprocesador ,sensores etc. ) 
+
+• Circuito esquemático
+
+Se dibujara un circuito eléctrico de todas las etapas.  Se le colocará  a los elementos usados su denominación correspondiente y en el caso que corresponda  su valor.
+Es imprescindible la justificación de los valores tomados  en la eleccion de los componentes.
+
+• Listado de componentes
+
+Este punto implicara la  descripción  en forma breve y conceptual de los elementos activos usados, justificando en los casos necesarios  los valores de los elementos pasivos.
+
+• Software - Diagrama  de flujo o seudocódigo
+
+1- Se desarrollara un diagrama de flujo  tal que permita entender  rápidamente  la lógica de la programación o en su defecto en seudocodigo
+2-Incluirá el  código de programa
+3- Se justificaran las decisiones tomadas en las interrupciones usadas
+4-Se explicara en  forma clara la función de cada rutina utilizada 
+
+• Resultados
+
+Se detallaran  los resultados obtenidos  y se calculara en los casos pertinentes los errores  producidos
+
+
+• Conclusiones
+
+En este punto se hará una autocrítica acerca de los errores y aciertos logrados . También se podrán  hacer sugerencias sobre futuras mejoras en el proyecto y si consideran que otro grupo lo puede continuar. Incluir en este punto las diferencias, si las hubiere, entre las especificaciones originales previstas en el anteproyecto y las finalmente alcanzadas.
+
+• Apéndice
+
+En el apéndice se adjuntara las hojas de datos del los elementos utilizados
+Algoritmos o cálculos utilizados durante el desarrollo del T.P.
+De ser necesario  dada las característica del proyecto se implementará un manual de  uso  que comprenderá  todas la explicaciones y ejemplos útiles para la programación  y/o  uso  del dispositivo por un lego en la materia
+
+(Finalmente se hará un calculo de los gastos ocasionados  en forma discriminada. Dicha información será usada por los docentes para asesorar )  

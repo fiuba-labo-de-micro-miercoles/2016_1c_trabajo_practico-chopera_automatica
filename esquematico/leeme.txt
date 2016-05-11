@@ -1,0 +1,3 @@
+Aquí se ubica el circuito esquemático completo (formato pdf [1]).
+El esquema se realiza con un software CAD y se agrega en esta carpeta.
+[1] Para evitar problemas de versiones de software se debe agregar una versión del esquemático en formato pdf.
