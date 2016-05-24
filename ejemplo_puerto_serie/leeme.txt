@@ -1,0 +1,5 @@
+Añado el código de ejemplo de funcionamiento del puerto serie utilizado
+la clase del 11/05 con las modificaciones para que sea compatible con el 
+MCU ATmel88PA.
+Compila bien pero no fue probado sobre el micro todavia. Se deben chequear
+las frecuencias.
