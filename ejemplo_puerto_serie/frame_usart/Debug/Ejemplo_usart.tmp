@@ -1,0 +1,45 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.51</VERSION>
+ <DEVICE>"ATmega88PA"</DEVICE>
+ <WORKING_DIR>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88padef.inc</FILE>
+  <FILE>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88PAdef.inc</FILE>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\avr_macros.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Debug/Ejemplo_usart.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Debug/Ejemplo_usart.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Debug\Ejemplo_usart.map</FILE>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Debug\Ejemplo_usart.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>41</LINE></RX_BUF>
+  <TX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>42</LINE></TX_BUF>
+  <RESET><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>73</LINE></RESET>
+  <ISR_RX_USART_STREAM><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>184</LINE></ISR_RX_USART_STREAM>
+  <ISR_REG_USART_VACIO><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>246</LINE></ISR_REG_USART_VACIO>
+  <USART_init><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>127</LINE></USART_init>
+  <X_SIEMPRE><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>90</LINE></X_SIEMPRE>
+  <loop_limpia><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>165</LINE></loop_limpia>
+  <ISR_RX_ERR_END><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>224</LINE></ISR_RX_ERR_END>
+  <ISR_RX_BYTE><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>210</LINE></ISR_RX_BYTE>
+  <ISR_RX_END><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>227</LINE></ISR_RX_END>
+  <ISR_RX_WAIT><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>218</LINE></ISR_RX_WAIT>
+  <FIN_TRANSMISION><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>272</LINE></FIN_TRANSMISION>
+  <SALVA_PTR_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>265</LINE></SALVA_PTR_TX>
+  <SIGUE_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>278</LINE></SIGUE_TX>
+  <TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>292</LINE></TEST_TX>
+  <MSJ_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>328</LINE></MSJ_TEST_TX>
+  <LOOP_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>300</LINE></LOOP_TEST_TX>
+  <FIN_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\Ejemplo_usart\Ejemplo_usart\Ejemplo_usart.asm</FILE><LINE>317</LINE></FIN_TEST_TX>
+ </LABELS>
+</ASSEMBLER_INFO>
