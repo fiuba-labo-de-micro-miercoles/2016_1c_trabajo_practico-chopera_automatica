@@ -90,34 +90,48 @@ RESET:	ldi 	r16,LOW(RAMEND)
 
 		sei					; habilitación global de todas las interrupciones
 
-		;rcall	TEST_TX
+		rcall	TEST_TX
 
 		
 X_SIEMPRE:
-	/*	movw		XL,ptr_rx_L
+		mov		t0,bytes_a_tx
+		tst		t0
+		brne		X_SIEMPRE
+		mov		t0,bytes_recibidos
+		tst		t0
+		breq		X_SIEMPRE
+;		cpi		t0,BUFFER_SIZE REVISAAAAAAAAR ESTOOOOOOOOOOOO
+;		brne		reset_buffer	QUIERO COMPROBAR LA CANTIDAD DE BYTES RECIBIDOS!!
+		movw		XL,ptr_rx_L
 		ld		t0,X
 		cpi		t0,'('
 		breq		prendo_led1
 		cpi		t0,')'
 		breq		prendo_led2
-	*/	rjmp		X_SIEMPRE
-
-/*prendo_led1:
-		ldi		t2,0x08
+		rjmp		reset_buffer
+prendo_led1:
+		ldi		t2,0xf7
 		out		PORTC,t2
-		rjmp		loop_limpia1
+		rjmp		reset_buffer
 prendo_led2:
-		ldi		t2,0x04
+		ldi		t2,0xfb
 		out		PORTC,t2
-limpia_buff:
+reset_buffer:
+		clr		t0
+		mov		bytes_recibidos,t0
+		movi		ptr_rx_L,LOW(RX_BUF)
+		movi		ptr_rx_H,HIGH(RX_BUF)
 		ldi		t1,BUFFER_SIZE
 		clr		t2
 loop_limpia1:
 		st		X+,t2
 		dec		t1
 		brne		loop_limpia1
+		input		t1,UCSR0B
+		sbr		t1,(1<<RXCIE0)
+		output	UCSR0B,t1
 		rjmp		X_SIEMPRE
-*/
+
 /*********************************************************/
 /*			COMUNICACION SERIE 			   */
 /*********************************************************/
@@ -131,30 +145,28 @@ loop_limpia1:
 											; 19.2 kbps e=0.2% 	@8MHz y U2X=1 -> 51
 											; 9600 bps  e=0.2% 	@8MHz y U2X=1 -> 103
 USART_init:
-		push		t0
+		pushi		SREG
+		push		t0		;Me guardo todas mis variables
 		push		t1
+		push		t2
 		pushw		X
+		pushw		Y
+		pushw		Z
 	
 		ldi		t0,high(UBRR_PRESCALE)				; Velocidad de transmisión
 		output	UBRR0H,t0	
-		;outi		UBRRH,high(BAUD_RATE)
 		ldi		t0,low(UBRR_PRESCALE)
 		output	UBRR0L,t0	
 
-		;outi	UBRRL,low(BAUD_RATE)
-		;outi	UCSRA,(1<<U2X)			
 		ldi		t0,1<<U2X0						; Modo asinc., doble velocidad
 		output	UCSR0A,t0	
 
 		; Trama: 8 bits de datos, sin paridad y 1 bit de stop, 
-		;outi 	UCSRC,(1<<URSEL)|(0<<UPM1)|(0<<UPM0)|(0<<USBS)|(1<<UCSZ1)|(1<<UCSZ0)
 		ldi		t0,(0<<UPM01)|(0<<UPM00)|(0<<USBS0)|(1<<UCSZ01)|(1<<UCSZ00)
 		output	UCSR0C,t0
 
-
 		; Configura los terminales de TX y RX; y habilita
 		; 	únicamente la int. de recepción
-		;outi	UCSRB,(1<<RXCIE)|(1<<RXEN)|(1<<TXEN)|(0<<UDRIE)
 		ldi		t0,(1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0)|(0<<UDRIE0)
 		output	UCSR0B,t0
 
@@ -176,9 +188,13 @@ loop_limpia:
 					
 		clr		bytes_a_tx		; nada pendiente de transmisión
 		
-		popw	X
+		popw		Z
+		popw		Y
+		popw		X
+		pop		t2
 		pop		t1
 		pop		t0
+		popi		SREG
 		ret
 
 ;-------------------------------------------------------------------------
@@ -188,16 +204,18 @@ loop_limpia:
 ; Devuelve: nada
 ;-------------------------------------------------------------------------
 ISR_RX_USART_STREAM:
-		
-		ldi	t0,0x00
-		out	PORTC,t0
 
+		pushi		SREG
 		push		t0		;Me guardo todas mis variables
 		push		t1
 		push		t2
 		pushw		X
 		pushw		Y
-		pushi		SREG
+		pushw		Z
+
+		input		t1,UCSR0B
+		cbr		t1,(1<<RXCIE0)
+		output	UCSR0B,t1
 
 		;estas validaciones, depende la situacion se pueden cambiar
 		movw		XL,ptr_rx_L;Inicializo el puntero con la ultima dir. del puntero al buffer 
@@ -208,14 +226,13 @@ ISR_RX_USART_STREAM:
 		brne		ISR_RX_ERR_END	;si no apunta, es porque alguien lo esta usando
 		cpi		XH,high(RX_BUF)
 		brne		ISR_RX_ERR_END
+		clr		t2
 
-		input		t1,UCSR0B
-		cbr		t1,(1<<RXCIE0)
-		output	UCSR0B,t1
 			
 ISR_RX_BYTE:
 		input		t0,UDR0
 		st		X+,t0
+		inc		t2
 		cpi		XL,low(RX_BUF+BUFFER_SIZE)
 		brsh		ISR_RX_END
 		cpi		XH,high(RX_BUF+BUFFER_SIZE)
@@ -228,17 +245,20 @@ ISR_RX_WAIT:
 		rjmp		ISR_RX_BYTE
 
 ISR_RX_ERR_END:
+		reti
 		;ENVIO UN NACK, PERO como??????
 
 ISR_RX_END:
 		movi		ptr_rx_L,LOW(RX_BUF)	;deja los punteros inicializados al primer
 		movi		ptr_rx_H,HIGH(RX_BUF)	; lugar del RX_BUFF
-		popi		SREG
+		mov		bytes_recibidos,t2
+		popw		Z
 		popw		Y
 		popw		X
 		pop		t2
 		pop		t1
 		pop		t0
+		popi		SREG
 		reti
 
 ;------------------------------------------------------------------------
@@ -250,11 +270,14 @@ ISR_RX_END:
 ; Devuelve: ptr_tx_H:ptr_tx_L, y bytes_a_tx.
 ;------------------------------------------------------------------------
 ISR_REG_USART_VACIO:		; UDR está vacío
-		push		t0
-		push		t1
 		pushi		SREG
+		push		t0		;Me guardo todas mis variables
+		push		t1
+		push		t2
 		pushw		X
-
+		pushw		Y
+		pushw		Z
+	
 		tst		bytes_a_tx	; hay datos pendientes de transmisión?
 		breq		FIN_TRANSMISION
 
@@ -279,13 +302,15 @@ FIN_TRANSMISION:		; si no hay nada que enviar,
 		input		t0,UCSR0B
 		cbr		t0,(1<<UDRIE0)
 		output	UCSR0B,t0
-		;cbi		UCSR0B,UDRIE0	; 	se deshabilita la interrupción.
 
 sigue_tx:
+		popw		Z
+		popw		Y
 		popw		X
-		popi		SREG
+		pop		t2
 		pop		t1
 		pop		t0
+		popi		SREG
 		reti
 
 ;-------------------------------------------------------------------------
@@ -296,10 +321,14 @@ sigue_tx:
 ; Habilita la int. de transmisión serie con ISR en ISR_REG_USART_VACIO().
 ;-------------------------------------------------------------------------
 TEST_TX:
-		pushw		Z
+		pushi		SREG
+		push		t0		;Me guardo todas mis variables
+		push		t1
+		push		t2
 		pushw		X
-		push		t0
-
+		pushw		Y
+		pushw		Z
+	
 		ldiw		Z,(MSJ_TEST_TX*2)
 		movw		XL,ptr_tx_L
 
@@ -326,10 +355,14 @@ FIN_TEST_TX:
 		output	UCSR0B,t0
 		;sbi		UCSR0B,UDRIE0
 
-		pop		t0
-		popw		X
 		popw		Z
+		popw		Y
+		popw		X
+		pop		t2
+		pop		t1
+		pop		t0
+		popi		SREG
 		ret
 
 MSJ_TEST_TX:
-.db		"TEST TX",'\r','\n',0
+.db		"frame_usart",'\r','\n',0
