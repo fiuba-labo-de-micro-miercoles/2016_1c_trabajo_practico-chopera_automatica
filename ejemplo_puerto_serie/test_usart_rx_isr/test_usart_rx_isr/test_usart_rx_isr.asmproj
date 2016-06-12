@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>5.1</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRAssembler</ToolchainName>
+    <ProjectGuid>{083e79e9-2b50-4d25-8b75-21718e7a7bcd}</ProjectGuid>
+    <avrdeviceseries>none</avrdeviceseries>
+    <avrdevice>ATmega88PA</avrdevice>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.obj</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <Language>ASSEMBLY</Language>
+    <AssemblyName>test_usart_rx_isr</AssemblyName>
+    <Name>test_usart_rx_isr</Name>
+    <RootNamespace>test_usart_rx_isr</RootNamespace>
+    <EntryFile>$(MSBuildProjectDirectory)\test_usart_rx_isr.asm</EntryFile>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <AsfVersion>2.11.1</AsfVersion>
+    <avrtoolinterface />
+    <avrtool>com.atmel.avrdbg.tool.simulator</avrtool>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolType xmlns="">com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolName xmlns="">AVR Simulator</ToolName>
+      <ToolNumber xmlns="">
+      </ToolNumber>
+      <Channel xmlns="">
+        <host>127.0.0.1</host>
+        <port>1103</port>
+        <ssl>False</ssl>
+      </Channel>
+    </com_atmel_avrdbg_tool_simulator>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrAssembler>
+  <avrasm.assembler.general.IncludeFile>($IncludeFile)</avrasm.assembler.general.IncludeFile>
+</AvrAssembler>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrAssembler>
+  <avrasm.assembler.general.IncludeFile>($IncludeFile)</avrasm.assembler.general.IncludeFile>
+</AvrAssembler>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="avr_macros.inc">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test_usart_rx_isr.asm">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Assembler.targets" />
+</Project>

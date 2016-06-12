@@ -1,0 +1,43 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.51</VERSION>
+ <DEVICE>"ATmega88PA"</DEVICE>
+ <WORKING_DIR>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88padef.inc</FILE>
+  <FILE>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88PAdef.inc</FILE>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\avr_macros.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\Debug/test_usart_rx_isr.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\Debug/test_usart_rx_isr.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\Debug\test_usart_rx_isr.map</FILE>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\Debug\test_usart_rx_isr.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>47</LINE></RX_BUF>
+  <TX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>48</LINE></TX_BUF>
+  <RESET><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>79</LINE></RESET>
+  <ISR_RX_USART><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>174</LINE></ISR_RX_USART>
+  <ISR_REG_USART_VACIO><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>201</LINE></ISR_REG_USART_VACIO>
+  <USART_init><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>113</LINE></USART_init>
+  <TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>251</LINE></TEST_TX>
+  <X_SIEMPRE><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>96</LINE></X_SIEMPRE>
+  <loop_limpia><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>152</LINE></loop_limpia>
+  <prendo_led_a><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>184</LINE></prendo_led_a>
+  <prendo_led_b><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>188</LINE></prendo_led_b>
+  <FIN_TRANSMISION><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>229</LINE></FIN_TRANSMISION>
+  <SALVA_PTR_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>222</LINE></SALVA_PTR_TX>
+  <SIGUE_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>235</LINE></SIGUE_TX>
+  <MSJ_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>295</LINE></MSJ_TEST_TX>
+  <LOOP_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>263</LINE></LOOP_TEST_TX>
+  <FIN_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\test_usart_rx_isr\test_usart_rx_isr\test_usart_rx_isr.asm</FILE><LINE>280</LINE></FIN_TEST_TX>
+ </LABELS>
+</ASSEMBLER_INFO>

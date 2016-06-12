@@ -1,0 +1,64 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.51</VERSION>
+ <DEVICE>"ATmega88PA"</DEVICE>
+ <WORKING_DIR>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88padef.inc</FILE>
+  <FILE>C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88PAdef.inc</FILE>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\avr_macros.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\Debug/leer_hora.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\Debug/leer_hora.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\Debug\leer_hora.map</FILE>
+  <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\Debug\leer_hora.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <RTC_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>38</LINE></RTC_BUF>
+  <TX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>39</LINE></TX_BUF>
+  <RX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>40</LINE></RX_BUF>
+  <FLAG_TX_FRAME><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>41</LINE></FLAG_TX_FRAME>
+  <RESET><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>69</LINE></RESET>
+  <ISR_REG_USART_VACIO><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>374</LINE></ISR_REG_USART_VACIO>
+  <ERASE_TX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>420</LINE></ERASE_TX_BUF>
+  <USART_init><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>313</LINE></USART_init>
+  <I2C_INIT><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>114</LINE></I2C_INIT>
+  <X_SIEMPRE><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>87</LINE></X_SIEMPRE>
+  <RTC_READ_TIME><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>173</LINE></RTC_READ_TIME>
+  <RTC_SEND_TIME><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>255</LINE></RTC_SEND_TIME>
+  <wait_main_1><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>95</LINE></wait_main_1>
+  <forever><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>107</LINE></forever>
+  <I2C_SEND_START><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>123</LINE></I2C_SEND_START>
+  <W1><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>126</LINE></W1>
+  <I2C_SEND_DATA><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>131</LINE></I2C_SEND_DATA>
+  <W2><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>135</LINE></W2>
+  <I2C_READ_DATA><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>140</LINE></I2C_READ_DATA>
+  <W3><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>143</LINE></W3>
+  <I2C_SEND_STOP><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>150</LINE></I2C_SEND_STOP>
+  <W4><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>153</LINE></W4>
+  <DELAY><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>158</LINE></DELAY>
+  <DELAY_LOOP><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>161</LINE></DELAY_LOOP>
+  <RTC_SEND_LOOP><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>269</LINE></RTC_SEND_LOOP>
+  <RTC_SEND_END><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>286</LINE></RTC_SEND_END>
+  <loop_limpia><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>349</LINE></loop_limpia>
+  <FIN_TRANSMISION><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>403</LINE></FIN_TRANSMISION>
+  <SALVA_PTR_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>396</LINE></SALVA_PTR_TX>
+  <SIGUE_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>410</LINE></SIGUE_TX>
+  <ERASE_TX_LOOP><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>433</LINE></ERASE_TX_LOOP>
+  <SEND_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>454</LINE></SEND_CHAR>
+  <WAIT1_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>456</LINE></WAIT1_CHAR>
+  <WAIT2_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>461</LINE></WAIT2_CHAR>
+  <TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>474</LINE></TEST_TX>
+  <MSJ_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>518</LINE></MSJ_TEST_TX>
+  <LOOP_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>486</LINE></LOOP_TEST_TX>
+  <FIN_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\leer_hora\leer_hora\leer_hora.asm</FILE><LINE>503</LINE></FIN_TEST_TX>
+ </LABELS>
+</ASSEMBLER_INFO>
