@@ -1,0 +1,46 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.0</VERSION>
+ <DEVICE>"ATmega328"</DEVICE>
+ <WORKING_DIR>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc</DIR>
+  <DIR>C:\Program Files\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.98\avrasm\inc\m328def.inc</FILE>
+  <FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\avr_macros.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\Debug\caudal.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>caudal.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>caudal.map</FILE>
+  <FILE>caudal.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <CL_TO_FILL><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>13</LINE></CL_TO_FILL>
+  <MAIN><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>32</LINE></MAIN>
+  <FILL_GLASS><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>40</LINE></FILL_GLASS>
+  <FIN><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>36</LINE></FIN>
+  <READ_PERIODS><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>235</LINE></READ_PERIODS>
+  <INICIATE_FILLING_REGISTERS><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>205</LINE></INICIATE_FILLING_REGISTERS>
+  <FILL><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>68</LINE></FILL>
+  <OPEN_VALVE><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>191</LINE></OPEN_VALVE>
+  <COUNT_PERIODS><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>85</LINE></COUNT_PERIODS>
+  <CONTINUE_COUNTING><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>103</LINE></CONTINUE_COUNTING>
+  <FINISH_COUNTING><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>123</LINE></FINISH_COUNTING>
+  <TOGGLE_LED_PC2><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>150</LINE></TOGGLE_LED_PC2>
+  <CLOSE_VALVE><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>179</LINE></CLOSE_VALVE>
+  <TURN_OFF_LED_PC2><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>145</LINE></TURN_OFF_LED_PC2>
+  <TURN_ON_LED_PC3><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>140</LINE></TURN_ON_LED_PC3>
+  <ES_UNO><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>168</LINE></ES_UNO>
+  <TURN_OFF_LED_PD7><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>268</LINE></TURN_OFF_LED_PD7>
+  <TURN_ON_LED_PD7><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>262</LINE></TURN_ON_LED_PD7>
+  <TURN_ON_LED_PD4><FILE>C:\Users\Tobias\Documents\Atmel Studio\7.0\caudal\caudal\caudal.asm</FILE><LINE>275</LINE></TURN_ON_LED_PD4>
+ </LABELS>
+</ASSEMBLER_INFO>
