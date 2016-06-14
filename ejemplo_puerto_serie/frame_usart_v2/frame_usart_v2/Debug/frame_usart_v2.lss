@@ -1,9 +1,9 @@
 
-AVRASM ver. 2.1.51  C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm Wed Jun 01 21:03:05 2016
+AVRASM ver. 2.1.51  C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm Sun Jun 12 20:09:01 2016
 
 [builtin](2): Including file 'C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88padef.inc'
-C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm(20): Including file 'C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88PAdef.inc'
-C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm(26): Including file 'C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\avr_macros.inc'
+C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm(21): Including file 'C:\Archivos de programa\Atmel\AVR Studio 5.1\extensions\Atmel\AVRAssembler\2.1.51.17\AvrAssembler/Include\m88PAdef.inc'
+C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm(27): Including file 'C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\avr_macros.inc'
                  
                  /*
                  
@@ -989,7 +989,8 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                   *  Author: Zoso
                  	
                  	Descripción:
-                 	Recibe un frame de 16 bytes
+                 	Recibe un frame de 16 bytes y verifica eñl primer caracter, en base a eso, prende un led
+                 	o prende otro
                  	Micro: Osc. Interno a 8Mhz
                  
                  	Para programar los fuses:
@@ -1141,13 +1142,15 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                  .equ		F_CPU			=	8000000
                  .equ		ACK			=	6
                  .equ		NACK			=	21
-                 
+                 .equ		FLAG_OK		=	0xAA
                  /*********************************************************/
                  /*				DATOS EN RAM			   */
                  /*********************************************************/
                  		.dseg 
 000100           RX_BUF:	.byte	BUFFER_SIZE	; buffer de recepción
 000110           TX_BUF:	.byte	BUFFER_SIZE	; buffer de transmisión
+                 
+000120           FLAG_RX_FRAME:	.byte		1
                  
                  /*********************************************************/
                  /*				VARIABLES				   */
@@ -1171,10 +1174,10 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
 000000 c019      		rjmp	RESET				; interrupción del reset
                  
                  		.org	URXCaddr			; USART, Rx Complete
-000012 c089      		rjmp	ISR_RX_USART_STREAM
+000012 c092      		rjmp	ISR_RX_USART_STREAM
                  	
                  		.org	UDREaddr			; USART Data Register Empty AHORA NO SE HABILITO!!!!!!
-000013 c0b4      		rjmp	ISR_REG_USART_VACIO
+000013 c0c3      		rjmp	ISR_REG_USART_VACIO
                  
                  		.org 	INT_VECTORS_SIZE
                  
@@ -1188,119 +1191,121 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
 000020 ef0f      		ldi	t0,0xFF
 000021 b908      		out	PORTC,t0
                  
-000022 d03f      		rcall	USART_init			; Configuración del puerto serie a 9600 bps
+000022 d048      		rcall	USART_init			; Configuración del puerto serie a 9600 bps
                  
 000023 9478      		sei					; habilitación global de todas las interrupciones
                  
-000024 d0ce      		rcall	TEST_TX
+000024 d0dd      		rcall	TEST_TX
                  
                  		
                  X_SIEMPRE:
 000025 20cc      		tst		bytes_a_tx
 000026 f7f1      		brne		X_SIEMPRE
-000027 2d0d      X_SIEMPRE2: mov		t0,bytes_recibidos
-000028 3100      		cpi		t0,BUFFER_SIZE
-000029 f7e9      		brne		X_SIEMPRE2
+000027 9100 0120 X_SIEMPRE2: lds		t0,FLAG_RX_FRAME
+000029 3a0a      		cpi		t0,FLAG_OK
+00002a f7e1      		brne		X_SIEMPRE2
                  		
-00002a e401      		ldi		t0,'A'
-00002b d027      		rcall		SEND_CHAR
+00002b e401      		ldi		t0,'A'	; Mando una 'A' para verificar que salio del 
+00002c d02f      		rcall		SEND_CHAR	; loop X_SIEMPRE2
                  
-                 
-                 
-                 ;		mov		t0,bytes_recibidos
-                 ;		cpi		t0,BUFFER_SIZE ;REVISAAAAAAAAR ESTOOOOOOOOOOOO
-                 ;		brne		reset_buffer	;QUIERO COMPROBAR LA CANTIDAD DE BYTES RECIBIDOS!!
-00002c 01d5      		movw		XL,ptr_rx_L
-00002d 910c      		ld		t0,X
-00002e d024      		rcall		SEND_CHAR
-00002f 3208      		cpi		t0,'('
-000030 f029      		breq		prendo_led1
-000031 3209      		cpi		t0,')'
-000032 f031      		breq		prendo_led2
-000033 ef0f      		ldi		t0,0xFF
-000034 b908      		out		PORTC,t0
-000035 c005      		rjmp		end_main
+00002d 01e5      		movw		YL,ptr_rx_L
+00002e 8108      		ld		t0,Y
+00002f d02c      		rcall		SEND_CHAR	;Mando primer caracter recibido en el bufffer RX
+000030 3208      		cpi		t0,'('
+000031 f029      		breq		prendo_led1
+000032 3209      		cpi		t0,')'
+000033 f049      		breq		prendo_led2
+000034 ef0f      		ldi		t0,0xFF
+000035 b908      		out		PORTC,t0
+000036 c00b      		rjmp		end_main
                  prendo_led1:
-000036 ef27      		ldi		t2,0xf7
-000037 b928      		out		PORTC,t2
-000038 c002      		rjmp		end_main
+000037 850f      		ldd		t0,Y+15
+000038 3605      		cpi		t0,'e'
+000039 f441      		brne		end_main
+00003a ef27      		ldi		t2,0xf7
+00003b b928      		out		PORTC,t2
+00003c c005      		rjmp		end_main
                  prendo_led2:
-000039 ef2b      		ldi		t2,0xfb
-00003a b928      		out		PORTC,t2
+00003d 850f      		ldd		t0,Y+15
+00003e 3605      		cpi		t0,'e'
+00003f f411      		brne		end_main
+000040 ef2b      		ldi		t2,0xfb
+000041 b928      		out		PORTC,t2
                  end_main:	
-00003b d006      		rcall		RESET_RX_BUFFER
+000042 d006      		rcall		RESET_RX_BUFFER
                 +
                 +
                 +.if UCSR0B < 0x40
                 +in t1 , UCSR0B
-00003c 9110 00c1+.else 
+000043 9110 00c1+.else 
                 +lds t1 , UCSR0B
                  		input		t1,UCSR0B
-00003e 6810      		sbr		t1,(1<<RXCIE0)
+000045 6810      		sbr		t1,(1<<RXCIE0)
                 +
                 +
                 +.if UCSR0B < 0x40
                 +out UCSR0B , t1
-00003f 9310 00c1+.else 
+000046 9310 00c1+.else 
                 +sts UCSR0B , t1
                  		output	UCSR0B,t1
-000041 cfe3      		rjmp		X_SIEMPRE
+000048 cfdc      		rjmp		X_SIEMPRE
                  
                  RESET_RX_BUFFER:
-000042 930f      		push		t0
-000043 931f      		push		t1
-000044 24dd      		clr		bytes_recibidos
+000049 930f      		push		t0
+00004a 931f      		push		t1
+00004b 24dd      		clr		bytes_recibidos
                 +
-000045 e000     +ldi t0 , LOW ( RX_BUF )
-000046 2ea0     +mov ptr_rx_L , t0
+00004c e000     +ldi t0 , LOW ( RX_BUF )
+00004d 2ea0     +mov ptr_rx_L , t0
                  		movi		ptr_rx_L,LOW(RX_BUF)
                 +
-000047 e001     +ldi t0 , HIGH ( RX_BUF )
-000048 2eb0     +mov ptr_rx_H , t0
+00004e e001     +ldi t0 , HIGH ( RX_BUF )
+00004f 2eb0     +mov ptr_rx_H , t0
                  		movi		ptr_rx_H,HIGH(RX_BUF)
-000049 e100      		ldi		t0,BUFFER_SIZE
-00004a e0a0      		ldi		XL,low(RX_BUF)
-00004b e0b1      		ldi		XH,high(RX_BUF)
-00004c 2711      		clr		t1
+000050 e100      		ldi		t0,BUFFER_SIZE
+000051 e0a0      		ldi		XL,low(RX_BUF)
+000052 e0b1      		ldi		XH,high(RX_BUF)
+000053 2711      		clr		t1
+000054 9310 0120 		sts		FLAG_RX_FRAME,t1
                  loop_limpia1:
-00004d 931d      		st		X+,t1
-00004e 950a      		dec		t0
-00004f f7e9      		brne		loop_limpia1
-000050 911f      		pop		t1
-000051 910f      		pop		t0
-000052 9508      		ret
+000056 931d      		st		X+,t1
+000057 950a      		dec		t0
+000058 f7e9      		brne		loop_limpia1
+000059 911f      		pop		t1
+00005a 910f      		pop		t0
+00005b 9508      		ret
                  
                  SEND_CHAR:	
-000053 931f      		push		t1
+00005c 931f      		push		t1
                 +
                 +
                 +.if UCSR0A < 0x40
                 +in t1 , UCSR0A
-000054 9110 00c0+.else 
+00005d 9110 00c0+.else 
                 +lds t1 , UCSR0A
                  WAIT1_CHAR:	input		t1,UCSR0A ;espero que el buffer este vacio UDR0
-000056 7210        		andi		t1,(1<<UDRE0)
-000057 2311      		tst		t1
-000058 f3d9      		breq		WAIT1_CHAR
+00005f 7210        		andi		t1,(1<<UDRE0)
+000060 2311      		tst		t1
+000061 f3d9      		breq		WAIT1_CHAR
                 +
                 +
                 +.if UDR0 < 0x40
                 +out UDR0 , t0
-000059 9300 00c6+.else 
+000062 9300 00c6+.else 
                 +sts UDR0 , t0
                  		output	UDR0,t0;envio 'A'
                 +
                 +
                 +.if UCSR0A < 0x40
                 +in t1 , UCSR0A
-00005b 9110 00c0+.else 
+000064 9110 00c0+.else 
                 +lds t1 , UCSR0A
                  WAIT2_CHAR:	input		t1,UCSR0A ;espero que el buffer este vacio UDR0
-00005d 7210        		andi		t1,(1<<UDRE0)
-00005e 2311      		tst		t1
-00005f f3d9      		breq		WAIT2_CHAR
-000060 911f      		pop		t1
-000061 9508      		ret
+000066 7210        		andi		t1,(1<<UDRE0)
+000067 2311      		tst		t1
+000068 f3d9      		breq		WAIT2_CHAR
+000069 911f      		pop		t1
+00006a 9508      		ret
                  /*********************************************************/
                  /*			COMUNICACION SERIE 			   */
                  /*********************************************************/
@@ -1315,129 +1320,129 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                  											; 9600 bps  e=0.2% 	@8MHz y U2X=1 -> 103
                  USART_init:
                 +
-000062 b70f     +in t0 , SREG
-000063 930f     +push t0
+00006b b70f     +in t0 , SREG
+00006c 930f     +push t0
                  		pushi		SREG
-000064 930f      		push		t0		;Me guardo todas mis variables
-000065 931f      		push		t1
-000066 932f      		push		t2
+00006d 930f      		push		t0		;Me guardo todas mis variables
+00006e 931f      		push		t1
+00006f 932f      		push		t2
                 +
-000067 93af     +push XL
-000068 93bf     +push XH
+000070 93af     +push XL
+000071 93bf     +push XH
                  		pushw		X
                 +
-000069 93cf     +push YL
-00006a 93df     +push YH
+000072 93cf     +push YL
+000073 93df     +push YH
                  		pushw		Y
                 +
-00006b 93ef     +push ZL
-00006c 93ff     +push ZH
+000074 93ef     +push ZL
+000075 93ff     +push ZH
                  		pushw		Z
                  	
-00006d e000      		ldi		t0,high(UBRR_PRESCALE)				; Velocidad de transmisión
+000076 e000      		ldi		t0,high(UBRR_PRESCALE)				; Velocidad de transmisión
                 +
                 +
                 +.if UBRR0H < 0x40
                 +out UBRR0H , t0
-00006e 9300 00c5+.else 
+000077 9300 00c5+.else 
                 +sts UBRR0H , t0
                  		output	UBRR0H,t0	
-000070 e607      		ldi		t0,low(UBRR_PRESCALE)
+000079 e607      		ldi		t0,low(UBRR_PRESCALE)
                 +
                 +
                 +.if UBRR0L < 0x40
                 +out UBRR0L , t0
-000071 9300 00c4+.else 
+00007a 9300 00c4+.else 
                 +sts UBRR0L , t0
                  		output	UBRR0L,t0	
                  
-000073 e002      		ldi		t0,1<<U2X0						; Modo asinc., doble velocidad
+00007c e002      		ldi		t0,1<<U2X0						; Modo asinc., doble velocidad
                 +
                 +
                 +.if UCSR0A < 0x40
                 +out UCSR0A , t0
-000074 9300 00c0+.else 
+00007d 9300 00c0+.else 
                 +sts UCSR0A , t0
                  		output	UCSR0A,t0	
                  
                  		; Trama: 8 bits de datos, sin paridad y 1 bit de stop, 
-000076 e006      		ldi		t0,(0<<UPM01)|(0<<UPM00)|(0<<USBS0)|(1<<UCSZ01)|(1<<UCSZ00)
+00007f e006      		ldi		t0,(0<<UPM01)|(0<<UPM00)|(0<<USBS0)|(1<<UCSZ01)|(1<<UCSZ00)
                 +
                 +
                 +.if UCSR0C < 0x40
                 +out UCSR0C , t0
-000077 9300 00c2+.else 
+000080 9300 00c2+.else 
                 +sts UCSR0C , t0
                  		output	UCSR0C,t0
                  
                  		; Configura los terminales de TX y RX; y habilita
                  		; 	únicamente la int. de recepción
-000079 e908      		ldi		t0,(1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0)|(0<<UDRIE0)
+000082 e908      		ldi		t0,(1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0)|(0<<UDRIE0)
                 +
                 +
                 +.if UCSR0B < 0x40
                 +out UCSR0B , t0
-00007a 9300 00c1+.else 
+000083 9300 00c1+.else 
                 +sts UCSR0B , t0
                  		output	UCSR0B,t0
                  
                  		; Inicializa el puntero al buffer de transmision y recepcion
                 +
-00007c e100     +ldi t0 , LOW ( TX_BUF )
-00007d 2e80     +mov ptr_tx_L , t0
+000085 e100     +ldi t0 , LOW ( TX_BUF )
+000086 2e80     +mov ptr_tx_L , t0
                  		movi		ptr_tx_L,LOW(TX_BUF)	
                 +
-00007e e001     +ldi t0 , HIGH ( TX_BUF )
-00007f 2e90     +mov ptr_tx_H , t0
+000087 e001     +ldi t0 , HIGH ( TX_BUF )
+000088 2e90     +mov ptr_tx_H , t0
                  		movi		ptr_tx_H,HIGH(TX_BUF)	
                 +
-000080 e000     +ldi t0 , LOW ( RX_BUF )
-000081 2ea0     +mov ptr_rx_L , t0
+000089 e000     +ldi t0 , LOW ( RX_BUF )
+00008a 2ea0     +mov ptr_rx_L , t0
                  		movi		ptr_rx_L,LOW(RX_BUF)
                 +
-000082 e001     +ldi t0 , HIGH ( RX_BUF )
-000083 2eb0     +mov ptr_rx_H , t0
+00008b e001     +ldi t0 , HIGH ( RX_BUF )
+00008c 2eb0     +mov ptr_rx_H , t0
                  		movi		ptr_rx_H,HIGH(RX_BUF)
                  			
                 +
-000084 e1a0     +ldi XL , LOW ( TX_BUF )
-000085 e0b1     +ldi XH , HIGH ( TX_BUF )
+00008d e1a0     +ldi XL , LOW ( TX_BUF )
+00008e e0b1     +ldi XH , HIGH ( TX_BUF )
                  		ldiw		X,TX_BUF			; limpia BUF_SIZE posiciones 
                 +
-000086 e0c0     +ldi YL , LOW ( RX_BUF )
-000087 e0d1     +ldi YH , HIGH ( RX_BUF )
+00008f e0c0     +ldi YL , LOW ( RX_BUF )
+000090 e0d1     +ldi YH , HIGH ( RX_BUF )
                  		ldiw		Y,RX_BUF
-000088 e110      		ldi		t1,BUFFER_SIZE		; del buffer de transmisión
-000089 2700      		clr		t0
+000091 e110      		ldi		t1,BUFFER_SIZE		; del buffer de transmisión
+000092 2700      		clr		t0
                  loop_limpia:
-00008a 930d      		st		X+,t0
-00008b 9309      		st		Y+,t0
-00008c 951a      		dec		t1
-00008d f7e1      		brne		loop_limpia
+000093 930d      		st		X+,t0
+000094 9309      		st		Y+,t0
+000095 951a      		dec		t1
+000096 f7e1      		brne		loop_limpia
                  					
-00008e 24cc      		clr		bytes_a_tx		; nada pendiente de transmisión
-00008f 24dd      		clr		bytes_recibidos
+000097 24cc      		clr		bytes_a_tx		; nada pendiente de transmisión
+000098 24dd      		clr		bytes_recibidos
                  
                 +
-000090 91ff     +pop ZH
-000091 91ef     +pop ZL
+000099 91ff     +pop ZH
+00009a 91ef     +pop ZL
                  		popw		Z
                 +
-000092 91df     +pop YH
-000093 91cf     +pop YL
+00009b 91df     +pop YH
+00009c 91cf     +pop YL
                  		popw		Y
                 +
-000094 91bf     +pop XH
-000095 91af     +pop XL
+00009d 91bf     +pop XH
+00009e 91af     +pop XL
                  		popw		X
-000096 912f      		pop		t2
-000097 911f      		pop		t1
-000098 910f      		pop		t0
+00009f 912f      		pop		t2
+0000a0 911f      		pop		t1
+0000a1 910f      		pop		t0
                 +
-000099 910f     +pop t0
-00009a bf0f     +out SREG , t0
+0000a2 910f     +pop t0
+0000a3 bf0f     +out SREG , t0
                  		popi		SREG
-00009b 9508      		ret
+0000a4 9508      		ret
                  
                  ;-------------------------------------------------------------------------
                  ; RECEPCION: Interrumpe cada vez que se recibe un byte x RS232.
@@ -1447,96 +1452,98 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                  ;-------------------------------------------------------------------------
                  
                  ISR_RX_USART_STREAM:
-00009c 930f      		push		t0	
+0000a5 930f      		push		t0	
                 +
-00009d b70f     +in t0 , SREG
-00009e 930f     +push t0
+0000a6 b70f     +in t0 , SREG
+0000a7 930f     +push t0
                  		pushi		SREG;Me guardo todas mis variables
-00009f 931f      		push		t1
-0000a0 932f      		push		t2
+0000a8 931f      		push		t1
+0000a9 932f      		push		t2
                 +
-0000a1 93af     +push XL
-0000a2 93bf     +push XH
+0000aa 93af     +push XL
+0000ab 93bf     +push XH
                  		pushw		X
                 +
-0000a3 93cf     +push YL
-0000a4 93df     +push YH
+0000ac 93cf     +push YL
+0000ad 93df     +push YH
                  		pushw		Y
                 +
-0000a5 93ef     +push ZL
-0000a6 93ff     +push ZH
+0000ae 93ef     +push ZL
+0000af 93ff     +push ZH
                  		pushw		Z
                  
-                 	;	mov		t0,bytes_recibidos
-                 	;	cpi		t0,BUFFER_SIZE
-                 	;	breq		ISR_RX_USART_END
+0000b0 2d0d      		mov		t0,bytes_recibidos
+0000b1 3100      		cpi		t0,BUFFER_SIZE
+0000b2 f081      		breq		ISR_RX_USART_END
                  
-0000a7 01d5      		movw		XL,ptr_rx_L
+0000b3 01d5      		movw		XL,ptr_rx_L
                 +
                 +
                 +.if UDR0 < 0x40
                 +in t0 , UDR0
-0000a8 9100 00c6+.else 
+0000b4 9100 00c6+.else 
                 +lds t0 , UDR0
                  		input		t0,UDR0
-0000aa 930d      		st		X+,t0
+0000b6 930d      		st		X+,t0
                  
                  		
-0000ab 31a0      		cpi		XL,low(RX_BUF+BUFFER_SIZE)
-0000ac f020      		brlo		ISR_RX_USART_SAVE_PR
-0000ad 30b1      		cpi		XH,high(RX_BUF+BUFFER_SIZE)
-0000ae f010      		brlo		ISR_RX_USART_SAVE_PR
+0000b7 31a0      		cpi		XL,low(RX_BUF+BUFFER_SIZE)
+0000b8 f020      		brlo		ISR_RX_USART_SAVE_PR
+0000b9 30b1      		cpi		XH,high(RX_BUF+BUFFER_SIZE)
+0000ba f010      		brlo		ISR_RX_USART_SAVE_PR
                 +
-0000af e0a0     +ldi XL , LOW ( RX_BUF )
-0000b0 e0b1     +ldi XH , HIGH ( RX_BUF )
+0000bb e0a0     +ldi XL , LOW ( RX_BUF )
+0000bc e0b1     +ldi XH , HIGH ( RX_BUF )
                  		ldiw		X,RX_BUF	; ptr_tx=ptr_tx+1, (módulo BUF_SIZE)
                  
                  ISR_RX_USART_SAVE_PR:
-0000b1 2eaa      		mov		ptr_rx_L,XL	; preserva puntero a sgte. dato
-0000b2 2ebb      		mov		ptr_rx_H,XH	; preserva puntero a sgte. dato
-0000b3 94d3      		inc		bytes_recibidos
-0000b4 2d0d      		mov		t0,bytes_recibidos	; Incrementa el nro. de datos recibidos en 1
-0000b5 3100      		cpi		t0,BUFFER_SIZE
-0000b6 f028      		brlo		ISR_RX_USART_CONT	; Si no se completo el buffer
+0000bd 2eaa      		mov		ptr_rx_L,XL	; preserva puntero a sgte. dato
+0000be 2ebb      		mov		ptr_rx_H,XH	; preserva puntero a sgte. dato
+0000bf 94d3      		inc		bytes_recibidos
+0000c0 2d0d      		mov		t0,bytes_recibidos	; Incrementa el nro. de datos recibidos en 1
+0000c1 3100      		cpi		t0,BUFFER_SIZE
+0000c2 f040      		brlo		ISR_RX_USART_CONT	; Si no se completo el buffer
                  							;vuelve en la próxima int.
                  ISR_RX_USART_END:	 	; si no hay nada que recibir
+0000c3 ea0a      		ldi		t0,FLAG_OK
+0000c4 9300 0120 		sts		FLAG_RX_FRAME,t0
                 +
                 +
                 +.if UCSR0B < 0x40
                 +in t0 , UCSR0B
-0000b7 9100 00c1+.else 
+0000c6 9100 00c1+.else 
                 +lds t0 , UCSR0B
                  		input		t0,UCSR0B
-0000b9 770f      		cbr		t0,(1<<RXCIE0)
+0000c8 770f      		cbr		t0,(1<<RXCIE0)
                 +
                 +
                 +.if UCSR0B < 0x40
                 +out UCSR0B , t0
-0000ba 9300 00c1+.else 
+0000c9 9300 00c1+.else 
                 +sts UCSR0B , t0
                  		output	UCSR0B,t0
                  
                  ISR_RX_USART_CONT:
                 +
-0000bc 91ff     +pop ZH
-0000bd 91ef     +pop ZL
+0000cb 91ff     +pop ZH
+0000cc 91ef     +pop ZL
                  		popw		Z
                 +
-0000be 91df     +pop YH
-0000bf 91cf     +pop YL
+0000cd 91df     +pop YH
+0000ce 91cf     +pop YL
                  		popw		Y
                 +
-0000c0 91bf     +pop XH
-0000c1 91af     +pop XL
+0000cf 91bf     +pop XH
+0000d0 91af     +pop XL
                  		popw		X
-0000c2 912f      		pop		t2
-0000c3 911f      		pop		t1
+0000d1 912f      		pop		t2
+0000d2 911f      		pop		t1
                 +
-0000c4 910f     +pop t0
-0000c5 bf0f     +out SREG , t0
+0000d3 910f     +pop t0
+0000d4 bf0f     +out SREG , t0
                  		popi		SREG
-0000c6 910f      		pop		t0
-0000c7 9518      		reti
+0000d5 910f      		pop		t0
+0000d6 9518      		reti
                  
                  ;------------------------------------------------------------------------
                  ; TRANSMISION: interrumpe cada vez que puede transmitir un byte.
@@ -1547,53 +1554,53 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                  ; Devuelve: ptr_tx_H:ptr_tx_L, y bytes_a_tx.
                  ;------------------------------------------------------------------------
                  ISR_REG_USART_VACIO:		; UDR está vacío
-0000c8 930f      		push		t0		;Me guardo todas mis variables
+0000d7 930f      		push		t0		;Me guardo todas mis variables
                 +
-0000c9 b70f     +in t0 , SREG
-0000ca 930f     +push t0
+0000d8 b70f     +in t0 , SREG
+0000d9 930f     +push t0
                  		pushi		SREG
-0000cb 931f      		push		t1
-0000cc 932f      		push		t2
+0000da 931f      		push		t1
+0000db 932f      		push		t2
                 +
-0000cd 93af     +push XL
-0000ce 93bf     +push XH
+0000dc 93af     +push XL
+0000dd 93bf     +push XH
                  		pushw		X
                 +
-0000cf 93cf     +push YL
-0000d0 93df     +push YH
+0000de 93cf     +push YL
+0000df 93df     +push YH
                  		pushw		Y
                 +
-0000d1 93ef     +push ZL
-0000d2 93ff     +push ZH
+0000e0 93ef     +push ZL
+0000e1 93ff     +push ZH
                  		pushw		Z
                  	
-0000d3 20cc      		tst		bytes_a_tx	; hay datos pendientes de transmisión?
-0000d4 f069      		breq		FIN_TRANSMISION
+0000e2 20cc      		tst		bytes_a_tx	; hay datos pendientes de transmisión?
+0000e3 f069      		breq		FIN_TRANSMISION
                  
-0000d5 01d4      		movw		XL,ptr_tx_L	; Recupera puntero al próximo byte a tx.
-0000d6 910d      		ld		t0,X+		; lee byte del buffer y apunta al
+0000e4 01d4      		movw		XL,ptr_tx_L	; Recupera puntero al próximo byte a tx.
+0000e5 910d      		ld		t0,X+		; lee byte del buffer y apunta al
                 +
                 +
                 +.if UDR0 < 0x40
                 +out UDR0 , t0
-0000d7 9300 00c6+.else 
+0000e6 9300 00c6+.else 
                 +sts UDR0 , t0
                  		output	UDR0,t0		; sgte. dato a transmitir (en la próxima int.)
                  
-0000d9 32a0      		cpi		XL,LOW(TX_BUF+BUFFER_SIZE)
-0000da f020      		brlo		SALVA_PTR_TX
-0000db 30b1      		cpi		XH,HIGH(TX_BUF+BUFFER_SIZE)
-0000dc f010      		brlo		SALVA_PTR_TX
+0000e8 32a0      		cpi		XL,LOW(TX_BUF+BUFFER_SIZE)
+0000e9 f020      		brlo		SALVA_PTR_TX
+0000ea 30b1      		cpi		XH,HIGH(TX_BUF+BUFFER_SIZE)
+0000eb f010      		brlo		SALVA_PTR_TX
                 +
-0000dd e1a0     +ldi XL , LOW ( TX_BUF )
-0000de e0b1     +ldi XH , HIGH ( TX_BUF )
+0000ec e1a0     +ldi XL , LOW ( TX_BUF )
+0000ed e0b1     +ldi XH , HIGH ( TX_BUF )
                  		ldiw		X,TX_BUF	; ptr_tx=ptr_tx+1, (módulo BUF_SIZE)
                  
                  SALVA_PTR_TX:
-0000df 014d      		movw		ptr_tx_L,XL	; preserva puntero a sgte. dato
+0000ee 014d      		movw		ptr_tx_L,XL	; preserva puntero a sgte. dato
                  
-0000e0 94ca      		dec		bytes_a_tx	; Descuenta el nro. de bytes a tx. en 1
-0000e1 f429      		brne		SIGUE_TX	;    si quedan datos que transmitir
+0000ef 94ca      		dec		bytes_a_tx	; Descuenta el nro. de bytes a tx. en 1
+0000f0 f429      		brne		SIGUE_TX	;    si quedan datos que transmitir
                  							;	vuelve en la próxima int.
                  ;REVISAR ESTE GRUPO DE INSTRUCCIONES
                  FIN_TRANSMISION:		; si no hay nada que enviar,
@@ -1601,39 +1608,39 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                 +
                 +.if UCSR0B < 0x40
                 +in t0 , UCSR0B
-0000e2 9100 00c1+.else 
+0000f1 9100 00c1+.else 
                 +lds t0 , UCSR0B
                  		input		t0,UCSR0B
-0000e4 7d0f      		cbr		t0,(1<<UDRIE0)
+0000f3 7d0f      		cbr		t0,(1<<UDRIE0)
                 +
                 +
                 +.if UCSR0B < 0x40
                 +out UCSR0B , t0
-0000e5 9300 00c1+.else 
+0000f4 9300 00c1+.else 
                 +sts UCSR0B , t0
                  		output	UCSR0B,t0
                  
                  sigue_tx:
                 +
-0000e7 91ff     +pop ZH
-0000e8 91ef     +pop ZL
+0000f6 91ff     +pop ZH
+0000f7 91ef     +pop ZL
                  		popw		Z
                 +
-0000e9 91df     +pop YH
-0000ea 91cf     +pop YL
+0000f8 91df     +pop YH
+0000f9 91cf     +pop YL
                  		popw		Y
                 +
-0000eb 91bf     +pop XH
-0000ec 91af     +pop XL
+0000fa 91bf     +pop XH
+0000fb 91af     +pop XL
                  		popw		X
-0000ed 912f      		pop		t2
-0000ee 911f      		pop		t1
+0000fc 912f      		pop		t2
+0000fd 911f      		pop		t1
                 +
-0000ef 910f     +pop t0
-0000f0 bf0f     +out SREG , t0
+0000fe 910f     +pop t0
+0000ff bf0f     +out SREG , t0
                  		popi		SREG
-0000f1 910f      		pop		t0
-0000f2 9518      		reti
+000100 910f      		pop		t0
+000101 9518      		reti
                  
                  ;-------------------------------------------------------------------------
                  ; TEST_TX: transmite el mensaje almacenado en memoria flash a partir
@@ -1643,50 +1650,50 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                  ; Habilita la int. de transmisión serie con ISR en ISR_REG_USART_VACIO().
                  ;-------------------------------------------------------------------------
                  TEST_TX:
-0000f3 930f      		push		t0		;Me guardo todas mis variables
+000102 930f      		push		t0		;Me guardo todas mis variables
                 +
-0000f4 b70f     +in t0 , SREG
-0000f5 930f     +push t0
+000103 b70f     +in t0 , SREG
+000104 930f     +push t0
                  		pushi		SREG
-0000f6 931f      		push		t1
-0000f7 932f      		push		t2
+000105 931f      		push		t1
+000106 932f      		push		t2
                 +
-0000f8 93af     +push XL
-0000f9 93bf     +push XH
+000107 93af     +push XL
+000108 93bf     +push XH
                  		pushw		X
                 +
-0000fa 93cf     +push YL
-0000fb 93df     +push YH
+000109 93cf     +push YL
+00010a 93df     +push YH
                  		pushw		Y
                 +
-0000fc 93ef     +push ZL
-0000fd 93ff     +push ZH
+00010b 93ef     +push ZL
+00010c 93ff     +push ZH
                  		pushw		Z
                  	
                 +
-0000fe e3ec     +ldi ZL , LOW ( ( MSJ_TEST_TX * 2 ) )
-0000ff e0f2     +ldi ZH , HIGH ( ( MSJ_TEST_TX * 2 ) )
+00010d e5ea     +ldi ZL , LOW ( ( MSJ_TEST_TX * 2 ) )
+00010e e0f2     +ldi ZH , HIGH ( ( MSJ_TEST_TX * 2 ) )
                  		ldiw		Z,(MSJ_TEST_TX*2)
-000100 01d4      		movw		XL,ptr_tx_L
+00010f 01d4      		movw		XL,ptr_tx_L
                  
                  LOOP_TEST_TX:
-000101 9105      		lpm		t0,Z+
-000102 2300      		tst		t0
-000103 f049      		breq		FIN_TEST_TX
+000110 9105      		lpm		t0,Z+
+000111 2300      		tst		t0
+000112 f049      		breq		FIN_TEST_TX
                  
-000104 930d      		st		X+,t0
-000105 94c3      		inc		bytes_a_tx
+000113 930d      		st		X+,t0
+000114 94c3      		inc		bytes_a_tx
                  
-000106 32a0      		cpi		XL,LOW(TX_BUF+BUFFER_SIZE)
-000107 f3c8      		brlo		LOOP_TEST_TX
-000108 30b1      		cpi		XH,HIGH(TX_BUF+BUFFER_SIZE)
-000109 f3b8      		brlo		LOOP_TEST_TX
+000115 32a0      		cpi		XL,LOW(TX_BUF+BUFFER_SIZE)
+000116 f3c8      		brlo		LOOP_TEST_TX
+000117 30b1      		cpi		XH,HIGH(TX_BUF+BUFFER_SIZE)
+000118 f3b8      		brlo		LOOP_TEST_TX
                 +
-00010a e1a0     +ldi XL , LOW ( TX_BUF )
-00010b e0b1     +ldi XH , HIGH ( TX_BUF )
+000119 e1a0     +ldi XL , LOW ( TX_BUF )
+00011a e0b1     +ldi XH , HIGH ( TX_BUF )
                  		ldiw		X,TX_BUF	; ptr_tx++ módulo BUF_SIZE
                  
-00010c cff4      		rjmp		LOOP_TEST_TX
+00011b cff4      		rjmp		LOOP_TEST_TX
                  ;REVISAR INSTRUCCIONES
                  ;	
                  FIN_TEST_TX:
@@ -1694,45 +1701,45 @@ C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesad
                 +
                 +.if UCSR0B < 0x40
                 +in t0 , UCSR0B
-00010d 9100 00c1+.else 
+00011c 9100 00c1+.else 
                 +lds t0 , UCSR0B
                  		input		t0,UCSR0B
-00010f 6200      		sbr		t0,(1<<UDRIE0)
+00011e 6200      		sbr		t0,(1<<UDRIE0)
                 +
                 +
                 +.if UCSR0B < 0x40
                 +out UCSR0B , t0
-000110 9300 00c1+.else 
+00011f 9300 00c1+.else 
                 +sts UCSR0B , t0
                  		output	UCSR0B,t0
                  		;sbi		UCSR0B,UDRIE0
                  
                 +
-000112 91ff     +pop ZH
-000113 91ef     +pop ZL
+000121 91ff     +pop ZH
+000122 91ef     +pop ZL
                  		popw		Z
                 +
-000114 91df     +pop YH
-000115 91cf     +pop YL
+000123 91df     +pop YH
+000124 91cf     +pop YL
                  		popw		Y
                 +
-000116 91bf     +pop XH
-000117 91af     +pop XL
+000125 91bf     +pop XH
+000126 91af     +pop XL
                  		popw		X
-000118 912f      		pop		t2
-000119 911f      		pop		t1
+000127 912f      		pop		t2
+000128 911f      		pop		t1
                 +
-00011a 910f     +pop t0
-00011b bf0f     +out SREG , t0
+000129 910f     +pop t0
+00012a bf0f     +out SREG , t0
                  		popi		SREG
-00011c 910f      		pop		t0
-00011d 9508      		ret
+00012b 910f      		pop		t0
+00012c 9508      		ret
                  
                  MSJ_TEST_TX:
-00011e 7550
-00011f 7265
-000120 6f74
-000121 0d20
+00012d 7550
+00012e 7265
+00012f 6f74
+000130 0d20
 
 
 RESOURCE USE INFORMATION
@@ -1752,38 +1759,38 @@ counted separately from r26..r31 here.
 "ATmega88PA" register use summary:
 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
 r8 :   4 r9 :   1 r10:   5 r11:   3 r12:   5 r13:   5 r14:   0 r15:   0 
-r16:  88 r17:  25 r18:  12 r19:   0 r20:   0 r21:   0 r22:   0 r23:   0 
-r24:   0 r25:   0 r26:  22 r27:  17 r28:   9 r29:   9 r30:   9 r31:   9 
-x  :   6 y  :   1 z  :   1 
+r16:  96 r17:  26 r18:  12 r19:   0 r20:   0 r21:   0 r22:   0 r23:   0 
+r24:   0 r25:   0 r26:  21 r27:  17 r28:  10 r29:   9 r30:   9 r31:   9 
+x  :   5 y  :   4 z  :   1 
 Registers used: 18 out of 35 (51.4%)
 
 "ATmega88PA" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   2 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   6 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   7 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   7 brlt  :   0 brmi  :   0 
-brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   7 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 cbi   :   0 cbr   :   2 clc   :   0 
 clh   :   0 cli   :   0 cln   :   0 clr   :   5 cls   :   0 clt   :   0 
-clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 cpi   :  10 
+clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 cpi   :  13 
 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 
-icall :   0 ijmp  :   0 in    :   4 inc   :   2 ld    :   2 ldd   :   0 
-ldi   :  35 lds   :   7 lpm   :   1 lsl   :   0 lsr   :   0 mov   :  10 
+icall :   0 ijmp  :   0 in    :   4 inc   :   2 ld    :   2 ldd   :   2 
+ldi   :  36 lds   :   8 lpm   :   1 lsl   :   0 lsr   :   0 mov   :  10 
 movw  :   5 mul   :   0 muls  :   0 mulsu :   0 neg   :   0 nop   :   0 
 or    :   0 ori   :   0 out   :  11 pop   :  43 push  :  43 rcall :   5 
 ret   :   4 reti  :   2 rjmp  :   7 rol   :   0 ror   :   0 sbc   :   0 
 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 sbiw  :   0 sbr   :   2 
 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 sei   :   1 sen   :   0 
 ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   0 
-spm   :   0 st    :   5 std   :   0 sts   :  11 sub   :   0 subi  :   0 
+spm   :   0 st    :   5 std   :   0 sts   :  13 sub   :   0 subi  :   0 
 swap  :   0 tst   :   5 wdr   :   0 
-Instructions used: 28 out of 111 (25.2%)
+Instructions used: 29 out of 111 (26.1%)
 
 "ATmega88PA" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000246    526     10    536    8192   6.5%
-[.dseg] 0x000100 0x000120      0     32     32    1024   3.1%
+[.cseg] 0x000000 0x000264    556     10    566    8192   6.9%
+[.dseg] 0x000100 0x000121      0     33     33    1024   3.2%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 
 Assembly complete, 0 errors, 0 warnings

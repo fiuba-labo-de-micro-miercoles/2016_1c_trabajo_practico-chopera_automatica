@@ -5,7 +5,8 @@
  *  Author: Zoso
 	
 	Descripción:
-	Recibe un frame de 16 bytes
+	Recibe un frame de 16 bytes y verifica eñl primer caracter, en base a eso, prende un led
+	o prende otro
 	Micro: Osc. Interno a 8Mhz
 
 	Para programar los fuses:
@@ -30,13 +31,15 @@
 .equ		F_CPU			=	8000000
 .equ		ACK			=	6
 .equ		NACK			=	21
-
+.equ		FLAG_OK		=	0xAA
 /*********************************************************/
 /*				DATOS EN RAM			   */
 /*********************************************************/
 		.dseg 
 RX_BUF:	.byte	BUFFER_SIZE	; buffer de recepción
 TX_BUF:	.byte	BUFFER_SIZE	; buffer de transmisión
+
+FLAG_RX_FRAME:	.byte		1
 
 /*********************************************************/
 /*				VARIABLES				   */
@@ -87,21 +90,16 @@ RESET:	ldi 	r16,LOW(RAMEND)
 X_SIEMPRE:
 		tst		bytes_a_tx
 		brne		X_SIEMPRE
-X_SIEMPRE2: mov		t0,bytes_recibidos
-		cpi		t0,BUFFER_SIZE
+X_SIEMPRE2: lds		t0,FLAG_RX_FRAME
+		cpi		t0,FLAG_OK
 		brne		X_SIEMPRE2
 		
-		ldi		t0,'A'
-		rcall		SEND_CHAR
+		ldi		t0,'A'	; Mando una 'A' para verificar que salio del 
+		rcall		SEND_CHAR	; loop X_SIEMPRE2
 
-
-
-;		mov		t0,bytes_recibidos
-;		cpi		t0,BUFFER_SIZE ;REVISAAAAAAAAR ESTOOOOOOOOOOOO
-;		brne		reset_buffer	;QUIERO COMPROBAR LA CANTIDAD DE BYTES RECIBIDOS!!
-		movw		XL,ptr_rx_L
-		ld		t0,X
-		rcall		SEND_CHAR
+		movw		YL,ptr_rx_L
+		ld		t0,Y
+		rcall		SEND_CHAR	;Mando primer caracter recibido en el bufffer RX
 		cpi		t0,'('
 		breq		prendo_led1
 		cpi		t0,')'
@@ -110,10 +108,16 @@ X_SIEMPRE2: mov		t0,bytes_recibidos
 		out		PORTC,t0
 		rjmp		end_main
 prendo_led1:
+		ldd		t0,Y+15
+		cpi		t0,'e'
+		brne		end_main
 		ldi		t2,0xf7
 		out		PORTC,t2
 		rjmp		end_main
 prendo_led2:
+		ldd		t0,Y+15
+		cpi		t0,'e'
+		brne		end_main
 		ldi		t2,0xfb
 		out		PORTC,t2
 end_main:	
@@ -133,6 +137,7 @@ RESET_RX_BUFFER:
 		ldi		XL,low(RX_BUF)
 		ldi		XH,high(RX_BUF)
 		clr		t1
+		sts		FLAG_RX_FRAME,t1
 loop_limpia1:
 		st		X+,t1
 		dec		t0
@@ -236,9 +241,9 @@ ISR_RX_USART_STREAM:
 		pushw		Y
 		pushw		Z
 
-	;	mov		t0,bytes_recibidos
-	;	cpi		t0,BUFFER_SIZE
-	;	breq		ISR_RX_USART_END
+		mov		t0,bytes_recibidos
+		cpi		t0,BUFFER_SIZE
+		breq		ISR_RX_USART_END
 
 		movw		XL,ptr_rx_L
 		input		t0,UDR0
@@ -260,6 +265,8 @@ ISR_RX_USART_SAVE_PR:
 		brlo		ISR_RX_USART_CONT	; Si no se completo el buffer
 							;vuelve en la próxima int.
 ISR_RX_USART_END:	 	; si no hay nada que recibir
+		ldi		t0,FLAG_OK
+		sts		FLAG_RX_FRAME,t0
 		input		t0,UCSR0B
 		cbr		t0,(1<<RXCIE0)
 		output	UCSR0B,t0

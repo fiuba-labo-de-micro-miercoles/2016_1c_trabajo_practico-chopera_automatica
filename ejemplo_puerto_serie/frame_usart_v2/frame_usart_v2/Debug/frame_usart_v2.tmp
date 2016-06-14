@@ -22,32 +22,33 @@
   <FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\Debug\frame_usart_v2.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <RX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>38</LINE></RX_BUF>
-  <TX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>39</LINE></TX_BUF>
-  <RESET><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>70</LINE></RESET>
-  <ISR_RX_USART_STREAM><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>230</LINE></ISR_RX_USART_STREAM>
-  <ISR_REG_USART_VACIO><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>285</LINE></ISR_REG_USART_VACIO>
-  <USART_init><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>169</LINE></USART_init>
-  <TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>336</LINE></TEST_TX>
-  <X_SIEMPRE><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>87</LINE></X_SIEMPRE>
-  <X_SIEMPRE2><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>90</LINE></X_SIEMPRE2>
-  <SEND_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>144</LINE></SEND_CHAR>
-  <prendo_led1><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>112</LINE></prendo_led1>
-  <prendo_led2><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>116</LINE></prendo_led2>
-  <end_main><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>119</LINE></end_main>
-  <RESET_RX_BUFFER><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>126</LINE></RESET_RX_BUFFER>
-  <loop_limpia1><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>136</LINE></loop_limpia1>
-  <WAIT1_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>146</LINE></WAIT1_CHAR>
-  <WAIT2_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>151</LINE></WAIT2_CHAR>
-  <loop_limpia><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>205</LINE></loop_limpia>
-  <ISR_RX_USART_SAVE_PR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>254</LINE></ISR_RX_USART_SAVE_PR>
-  <ISR_RX_USART_CONT><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>267</LINE></ISR_RX_USART_CONT>
-  <ISR_RX_USART_END><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>262</LINE></ISR_RX_USART_END>
-  <FIN_TRANSMISION><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>314</LINE></FIN_TRANSMISION>
-  <SALVA_PTR_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>307</LINE></SALVA_PTR_TX>
-  <SIGUE_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>319</LINE></SIGUE_TX>
-  <MSJ_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>380</LINE></MSJ_TEST_TX>
-  <LOOP_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>348</LINE></LOOP_TEST_TX>
-  <FIN_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>365</LINE></FIN_TEST_TX>
+  <RX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>39</LINE></RX_BUF>
+  <TX_BUF><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>40</LINE></TX_BUF>
+  <FLAG_RX_FRAME><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>42</LINE></FLAG_RX_FRAME>
+  <RESET><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>73</LINE></RESET>
+  <ISR_RX_USART_STREAM><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>235</LINE></ISR_RX_USART_STREAM>
+  <ISR_REG_USART_VACIO><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>292</LINE></ISR_REG_USART_VACIO>
+  <USART_init><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>174</LINE></USART_init>
+  <TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>343</LINE></TEST_TX>
+  <X_SIEMPRE><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>90</LINE></X_SIEMPRE>
+  <X_SIEMPRE2><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>93</LINE></X_SIEMPRE2>
+  <SEND_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>149</LINE></SEND_CHAR>
+  <prendo_led1><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>110</LINE></prendo_led1>
+  <prendo_led2><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>117</LINE></prendo_led2>
+  <end_main><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>123</LINE></end_main>
+  <RESET_RX_BUFFER><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>130</LINE></RESET_RX_BUFFER>
+  <loop_limpia1><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>141</LINE></loop_limpia1>
+  <WAIT1_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>151</LINE></WAIT1_CHAR>
+  <WAIT2_CHAR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>156</LINE></WAIT2_CHAR>
+  <loop_limpia><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>210</LINE></loop_limpia>
+  <ISR_RX_USART_END><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>267</LINE></ISR_RX_USART_END>
+  <ISR_RX_USART_SAVE_PR><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>259</LINE></ISR_RX_USART_SAVE_PR>
+  <ISR_RX_USART_CONT><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>274</LINE></ISR_RX_USART_CONT>
+  <FIN_TRANSMISION><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>321</LINE></FIN_TRANSMISION>
+  <SALVA_PTR_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>314</LINE></SALVA_PTR_TX>
+  <SIGUE_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>326</LINE></SIGUE_TX>
+  <MSJ_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>387</LINE></MSJ_TEST_TX>
+  <LOOP_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>355</LINE></LOOP_TEST_TX>
+  <FIN_TEST_TX><FILE>C:\Documents and Settings\Zoso\Mis documentos\FIUBA\Laboratorio de Microprocesadores\Ejemplos\frame_usart_v2\frame_usart_v2\frame_usart_v2.asm</FILE><LINE>372</LINE></FIN_TEST_TX>
  </LABELS>
 </ASSEMBLER_INFO>
